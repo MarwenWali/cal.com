@@ -1,6 +1,6 @@
 "use client";
 
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import posthog from "posthog-js";
 import { useEffect } from "react";
@@ -83,16 +83,26 @@ function VerifyEmailPage() {
                     </Button>
                   ))}
                 </div>
-                <Button
-                  color="minimal"
-                  loading={mutation.isPending}
-                  onClick={() => {
-                    posthog.capture("verify_email_resend_clicked");
-                    showToast(t("send_email"), "success");
-                    mutation.mutate();
-                  }}>
-                  {t("resend_email")}
-                </Button>
+                <div className="flex flex-col items-start gap-2 sm:flex-row">
+                  <Button
+                    color="minimal"
+                    loading={mutation.isPending}
+                    onClick={() => {
+                      posthog.capture("verify_email_resend_clicked");
+                      showToast(t("send_email"), "success");
+                      mutation.mutate();
+                    }}>
+                    {t("resend_email")}
+                  </Button>
+                  <Button
+                    color="secondary"
+                    onClick={async () => {
+                      posthog.capture("verify_email_use_different_email_clicked");
+                      await signOut({ callbackUrl: "/signup" });
+                    }}>
+                    {t("use_different_email")}
+                  </Button>
+                </div>
               </>
             }
           />

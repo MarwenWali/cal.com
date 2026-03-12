@@ -459,6 +459,7 @@
   "add_another_calendar": "Add another calendar",
   "other": "Other",
   "email_sign_in_subject": "Your sign-in link for {{appName}}",
+  "use_different_email": "Use a different email",
   "round_robin_emailed_you_and_attendees": "You are meeting with {{user}}. We sent an email with a calendar invitation with the details to everyone.",
   "round_robin_emailed_host_and_attendee": "{{host}} is meeting with {{attendee}}. We sent an email with a calendar invitation with the details to everyone.",
   "emailed_host_and_attendee": "We sent an email with a calendar invitation with the details to everyone.",
